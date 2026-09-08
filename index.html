@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MenteLeve</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f4faf7;
+  color: #29443a;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: white;
+  padding: 16px;
+  box-shadow: 0 2px 10px #00000012;
+}
+
+.menu {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #3c8c6a;
+}
+
+nav {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+nav button {
+  border: none;
+  background: #edf8f2;
+  color: #3c8c6a;
+  padding: 9px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 25px 20px;
+}
+
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero h1 {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  color: #6d8178;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+.btn {
+  border: none;
+  background: #4ca477;
+  color: white;
+  padding: 13px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 5px;
+}
+
+.btn:hover {
+  opacity: .9;
+}
+
+section {
+  scroll-margin-top: 90px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  margin: 25px 0;
+  box-shadow: 0 5px 20px #0000000b;
+}
+
+.card h2 {
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: #6d8178;
+  line-height: 1.5;
+}
+
+textarea,
+input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #d6e5de;
+  border-radius: 12px;
+  margin: 15px 0;
+  font-size: 16px;
+}
+
+textarea {
+  min-height: 150px;
+}
+
+.message {
+  background: #edf8f2;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 18px;
+  margin-top: 15px;
+}
+
+.breath {
+  text-align: center;
+}
+
+.circle {
+  width: 130px;
+  height: 130px;
+  background: #bde8d0;
+  border-radius: 50%;
+  margin: 30px auto;
+  transition: transform 4s ease;
+}
+
+.circle.expand {
+  transform: scale(1.5);
+}
+
+.question {
+  margin-top: 30px;
+}
+
+.option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: white;
+  border: 1px solid #d9e8e1;
+  padding: 14px;
+  border-radius: 12px;
+  margin: 7px 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.option.selected {
+  background: #dff4e9;
+  border-color: #4ca477;
+}
+
+.progress {
+  height: 10px;
+  background: #dcebe4;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+#barra {
+  height: 100%;
+  width: 0%;
+  background: #4ca477;
+  border-radius: 10px;
+  transition: .3s;
+}
+
+#resultado {
+  display: none;
+  text-align: center;
+  background: #edf8f2;
+  padding: 25px;
+  border-radius: 15px;
+  margin-top: 25px;
+}
+
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: #82938c;
+}
+
+@media(max-width:600px) {
+
+  .menu {
+    flex-direction: column;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  nav button {
+    font-size: 13px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="menu">
+
+<div class="logo">🌿 MenteLeve</div>
+
+<nav>
+
+<button onclick="irPara('recursos')">
+Recursos
+</button>
+
+<button onclick="irPara('diario')">
+Diário
+</button>
+
+<button onclick="irPara('respiracao')">
+Respiração
+</button>
+
+<button onclick="irPara('perfil')">
+Perfil
+</button>
+
+</nav>
+
+</div>
+
+</header>
+
+
+<main id="principal">
+
+<section class="hero">
+
+<h1>
+Cuide da sua mente. 💚
+</h1>
+
+<p>
+Um espaço simples para você respirar,
+refletir e cuidar do seu bem-estar.
+</p>
+
+<button class="btn" onclick="abrirAvaliacao()">
+Começar avaliação →
+</button>
+
+</section>
+
+
+<div class="container">
+
+
+<section id="recursos">
+
+<div class="card">
+
+<h2>🌱 Recursos</h2>
+
+<p>
+Ferramentas simples para ajudar você
+a cuidar do seu bem-estar.
+</p>
+
+</div>
+
+</section>
+
+
+<section id="diario">
+
+<div class="card">
+
+<h2>💭 Meu diário</h2>
+
+<p>
+Escreva como você está se sentindo hoje.
+</p>
+
+<textarea
+id="textoDiario"
+placeholder="Escreva aqui..."
+></textarea>
+
+<button class="btn" onclick="salvarDiario()">
+Salvar 💚
+</button>
+
+<button class="btn" onclick="limparDiario()">
+Limpar
+</button>
+
+<p id="statusDiario"></p>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="card">
+
+<h2>💚 Uma mensagem para você</h2>
+
+<div class="message" id="mensagem">
+Você está fazendo o melhor que pode. 🌱
+</div>
+
+<button class="btn" onclick="novaMensagem()">
+Nova mensagem ✨
+</button>
+
+</div>
+
+</section>
+
+
+<section id="respiracao">
+
+<div class="card breath">
+
+<h2>🌬️ Respiração guiada</h2>
+
+<p id="respTexto">
+Clique para começar.
+</p>
+
+<div class="circle" id="circulo"></div>
+
+<button class="btn" onclick="respirar()">
+Começar respiração
+</button>
+
+</div>
+
+</section>
+
+
+<section id="perfil">
+
+<div class="card">
+
+<h2>👤 Meu perfil</h2>
+
+<p id="saudacao">
+Olá! 👋
+</p>
+
+<input
+id="nome"
+placeholder="Digite seu nome"
+>
+
+<button class="btn" onclick="salvarPerfil()">
+Salvar perfil
+</button>
+
+<p id="statusPerfil"></p>
+
+</div>
+
+</section>
+
+</div>
+
+</main>
+
+
+<section id="avaliacao" style="display:none;">
+
+<div class="container">
+
+<div class="card">
+
+<h1>Como você está? 💚</h1>
+
+<p>
+Responda às três perguntas.
+</p>
+
+<div class="progress">
+<div id="barra"></div>
+</div>
+
+
+<div class="question">
+
+<h3>
+1. Como você está se sentindo hoje?
+</h3>
+
+<button class="option" onclick="responder(this,1,2)">
+😊 Muito bem
+</button>
+
+<button class="option" onclick="responder(this,1,1)">
+🙂 Bem
+</button>
+
+<button class="option" onclick="responder(this,1,0)">
+😐 Normal
+</button>
+
+<button class="option" onclick="responder(this,1,-1)">
+😔 Triste
+</button>
+
+<button class="option" onclick="responder(this,1,-2)">
+😣 Muito mal
+</button>
+
+</div>
+
+
+<div class="question">
+
+<h3>
+2. Como está sua ansiedade hoje?
+</h3>
+
+<button class="option" onclick="responder(this,2,2)">
+😌 Baixa
+</button>
+
+<button class="option" onclick="responder(this,2,0)">
+😐 Moderada
+</button>
+
+<button class="option" onclick="responder(this,2,-2)">
+😰 Alta
+</button>
+
+</div>
+
+
+<div class="question">
+
+<h3>
+3. Como foi seu sono?
+</h3>
+
+<button class="option" onclick="responder(this,3,2)">
+😴 Bom
+</button>
+
+<button class="option" onclick="responder(this,3,0)">
+😐 Regular
+</button>
+
+<button class="option" onclick="responder(this,3,-2)">
+🥱 Ruim
+</button>
+
+</div>
+
+
+<button class="btn" onclick="mostrarResultado()">
+Ver meu resultado
+</button>
+
+<button class="btn" onclick="voltar()">
+Voltar
+</button>
+
+
+<div id="resultado"></div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+🌿 MenteLeve — Um passo de cada vez.
+
+</footer>
+
+
+<script>
+
+let respostas = [null, null, null];
+
+
+function irPara(id) {
+
+  const elemento = document.getElementById(id);
+
+  if (elemento) {
+
+    elemento.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+
+  }
+
+}
+
+
+function abrirAvaliacao() {
+
+  document.getElementById("principal").style.display = "none";
+
+  document.getElementById("avaliacao").style.display = "block";
+
+  window.scrollTo(0,0);
+
+}
+
+
+function voltar() {
+
+  document.getElementById("avaliacao").style.display = "none";
+
+  document.getElementById("principal").style.display = "block";
+
+  window.scrollTo(0,0);
+
+}
+
+
+function responder(botao, pergunta, pontos) {
+
+  respostas[pergunta - 1] = pontos;
+
+  const botoes =
+    botao.parentElement.querySelectorAll(".option");
+
+  botoes.forEach(function(item) {
+    item.classList.remove("selected");
+  });
+
+  botao.classList.add("selected");
+
+  let quantidade = 0;
+
+  respostas.forEach(function(resposta) {
+
+    if (resposta !== null) {
+      quantidade++;
+    }
+
+  });
+
+  document.getElementById("barra").style.width =
+    (quantidade / 3 * 100) + "%";
+
+}
+
+
+function mostrarResultado() {
+
+  const resultado =
+    document.getElementById("resultado");
+
+  if (
+    respostas[0] === null ||
+    respostas[1] === null ||
+    respostas[2] === null
+  ) {
+
+    resultado.innerHTML =
+      "<h2>🌱 Falta pouco!</h2>" +
+      "<p>Responda as três perguntas primeiro.</p>";
+
+    resultado.style.display = "block";
+
+    return;
+  }
+
+
+  const pontos =
+    respostas[0] +
+    respostas[1] +
+    respostas[2];
+
+
+  let titulo;
+  let texto;
+  let emoji;
+
+
+  if (pontos >= 4) {
+
+    emoji = "🌟";
+
+    titulo = "Você parece estar em um bom momento!";
+
+    texto =
+      "Continue cuidando de você e aproveitando os pequenos momentos bons.";
+
+  }
+
+  else if (pontos >= 0) {
+
+    emoji = "🌱";
+
+    titulo = "Seu dia pode estar tendo altos e baixos.";
+
+    texto =
+      "Reserve alguns minutos para respirar e fazer algo que você gosta.";
+
+  }
+
+  else {
+
+    emoji = "💚";
+
+    titulo = "Parece que hoje está sendo um dia difícil.";
+
+    texto =
+      "Tente diminuir o ritmo, respirar com calma e conversar com alguém de confiança.";
+
+  }
+
+
+  resultado.innerHTML =
+
+    "<div style='font-size:50px'>" +
+    emoji +
+    "</div>" +
+
+    "<h2>" +
+    titulo +
+    "</h2>" +
+
+    "<p>" +
+    texto +
+    "</p>" +
+
+    "<br>" +
+
+    "<button class='btn' onclick='reiniciar()'>" +
+    "Fazer novamente" +
+    "</button>";
+
+  resultado.style.display = "block";
+
+}
+
+
+function reiniciar() {
+
+  respostas = [null, null, null];
+
+  document
+    .querySelectorAll(".option")
+    .forEach(function(item) {
+
+      item.classList.remove("selected");
+
+    });
+
+  document.getElementById("barra").style.width = "0%";
+
+  document.getElementById("resultado").style.display =
+    "none";
+
+}
+
+
+function salvarDiario() {
+
+  const texto =
+    document.getElementById("textoDiario").value;
+
+  localStorage.setItem(
+    "menteLeveDiario",
+    texto
+  );
+
+  document.getElementById("statusDiario").innerText =
+    "Diário salvo! 💚";
+
+}
+
+
+function limparDiario() {
+
+  document.getElementById("textoDiario").value = "";
+
+  localStorage.removeItem("menteLeveDiario");
+
+  document.getElementById("statusDiario").innerText =
+    "Diário limpo.";
+
+}
+
+
+const diarioSalvo =
+  localStorage.getItem("menteLeveDiario");
+
+if (diarioSalvo) {
+
+  document.getElementById("textoDiario").value =
+    diarioSalvo;
+
+}
+
+
+const mensagens = [
+
+"Você está fazendo o melhor que pode. 🌱",
+
+"Respire. Você não precisa resolver tudo agora. 💚",
+
+"Pequenos passos também são progresso. 🌿",
+
+"Seja gentil com você mesmo hoje. 💚",
+
+"Você merece alguns minutos de paz. 🌸",
+
+"Um dia difícil não define toda a sua história. 🌱"
+
+];
+
+
+function novaMensagem() {
+
+  const numero =
+    Math.floor(Math.random() * mensagens.length);
+
+  document.getElementById("mensagem").innerText =
+    mensagens[numero];
+
+}
+
+
+let respirando = false;
+
+
+function respirar() {
+
+  if (respirando) return;
+
+  respirando = true;
+
+  const circulo =
+    document.getElementById("circulo");
+
+  const texto =
+    document.getElementById("respTexto");
+
+
+  texto.innerText =
+    "Inspire lentamente...";
+
+  circulo.classList.add("expand");
+
+
+  setTimeout(function() {
+
+    texto.innerText =
+      "Segure por alguns segundos...";
+
+  },4000);
+
+
+  setTimeout(function() {
+
+    texto.innerText =
+      "Expire lentamente...";
+
+    circulo.classList.remove("expand");
+
+  },6000);
+
+
+  setTimeout(function() {
+
+    texto.innerText =
+      "Muito bem! 💚";
+
+    respirando = false;
+
+  },10000);
+
+}
+
+
+function salvarPerfil() {
+
+  const nome =
+    document.getElementById("nome").value.trim();
+
+
+  if (nome === "") {
+
+    document.getElementById("statusPerfil").innerText =
+      "Digite seu nome primeiro.";
+
+    return;
+
+  }
+
+
+  localStorage.setItem(
+    "menteLeveNome",
+    nome
+  );
+
+
+  document.getElementById("saudacao").innerText =
+    "Olá, " + nome + "! 👋";
+
+
+  document.getElementById("statusPerfil").innerText =
+    "Perfil salvo! 💚";
+
+}
+
+
+const nomeSalvo =
+  localStorage.getItem("menteLeveNome");
+
+
+if (nomeSalvo) {
+
+  document.getElementById("nome").value =
+    nomeSalvo;
+
+  document.getElementById("saudacao").innerText =
+    "Olá, " + nomeSalvo + "! 👋";
+
+}
+
+</script>
+
+</body>
+</html>
